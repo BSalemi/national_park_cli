@@ -3,15 +3,18 @@
 
 require "bundler/setup"
 require "national_park_cli"
+require "pry"
+require "IRB"
 
+cli = CLI.new 
 
+cli.run
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
 
 # (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
-# Pry.start
 
-require "irb"
+Pry.start
+
 IRB.start(__FILE__)
