@@ -1,13 +1,13 @@
 class State 
   
-  attr_accessor :name, :abbreviation, :url, :parks_scraped
+  attr_accessor :name, :url, :abbreviation, :parks_scraped
   
   @@all = [] 
   
-    def initialize(name, abbreviation, url, parks_scraped = false)
+    def initialize(name, url, abbreviation, parks_scraped = false)
       @name = name
+      @url = url
       @abbreviation = abbreviation 
-      @url = url 
       @parks_scraped = parks_scraped
       @@all << self 
     end 
