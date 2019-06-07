@@ -19,6 +19,7 @@ class CLI
     ask_to_select_bio
     bio_input = gets.strip.to_i
     Park.find_bio_by_index(bio_input)
+    # binding.pry
     
   end
   
