@@ -27,12 +27,12 @@ class Scraper
     grabbed_elements = parsed_doc.css("li.clearfix")
     grabbed_elements.each_with_index do |element, index|
       
-      type = grabbed_elements.css("h2")[index].text
-      name = grabbed_elements.css("h3")[index].text
-      location = grabbed_elements.css("h4")[index].text
-      bio = grabbed_elements.css("p")[index].text
+      type = grabbed_elements.css("h2")[index].nil? ? "N/A" : grabbed_elements.css("h2")[index].text
+      name = grabbed_elements.css("h3")[index].nil? ? "N/A" : grabbed_elements.css("h3")[index].text
+      location = grabbed_elements.css("h4")[index].nil? ? "N/A" : grabbed_elements.css("h4")[index].text
+      bio = grabbed_elements.css("p")[index].nil? ? "N/A" : grabbed_elements.css("p")[index].text
       new_park = Park.new(type, name, location, bio, CLI.selected_state)
-      binding.pry
+      # binding.pry
     end 
   end 
 end 

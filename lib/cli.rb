@@ -33,9 +33,9 @@ class CLI
  end 
  
  def show_parks
-   Park.all.each do |park|
-     binding.pry
-     puts "#{park.name} - #{park.type}"
+   Park.all.each.with_index(1) do |park, index|
+    # binding.pry
+     puts "#{index}.#{park.name} - #{park.type}"
   end 
  end 
  
