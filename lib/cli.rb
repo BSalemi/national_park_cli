@@ -1,5 +1,11 @@
 class CLI 
   
+  @@selected_state = nil 
+  
+  def self.selected_state 
+    @@selected_state
+  end
+  
   def run 
     Scraper.scrape_nps
     welcome
@@ -7,8 +13,8 @@ class CLI
     show_states
     ask_to_select_state
     user_input = gets.strip
-    State.find_by_abbrev(user_input)
-    Scraper.scrape_individual_page(State.find_by_abbrev(user_input).url)
+    @@selected_state = State.find_by_abbrev(user_input)
+    @@selected_state.scraped? ? putyouralternativemethodhere : Scraper.scrape_individual_page(@@selected_state.url)
     show_parks
   end
   
@@ -28,6 +34,7 @@ class CLI
  
  def show_parks
    Park.all.each do |park|
+     binding.pry
      puts "#{park.name} - #{park.type}"
   end 
  end 
