@@ -15,7 +15,10 @@ class Park
     def self.all 
       @@all 
     end 
-  
-  
-  
+    
+    def self.find_bio_by_index(number)
+    number =- 1 
+    bio = @@all[number].bio
+    bio
+    end 
 end 
