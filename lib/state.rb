@@ -15,6 +15,13 @@ class State
     def self.all 
       @@all 
     end 
+   
+    
+    def self.find_by_abbrev(string)
+      @@all.detect do |state|
+        state.abbreviation.upcase == string.upcase
+    end 
+    end 
   
   
   
