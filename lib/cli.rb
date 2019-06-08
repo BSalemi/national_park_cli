@@ -19,6 +19,8 @@ class CLI
     ask_to_select_bio
     bio_input = gets.strip.to_i
     Park.find_bio_by_index(bio_input)
+    puts
+    continue_or_exit
     # binding.pry
     
   end
@@ -46,8 +48,32 @@ class CLI
  
  def ask_to_select_bio
    puts "Please enter the number of the National Park you would like to learn more about or type 'exit'"
+   
  end 
  
+ def continue_or_exit
+   puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
+  user_input = ""
+   while user_input != 'exit' 
+    user_input = gets.strip
+    show_parks
+    ask_to_select_bio
+    bio_input = gets.strip.to_i
+    Park.find_bio_by_index(bio_input)
+    puts
+    puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
+   end 
+   if user_input == "exit"
+     goodbye
+   elsif 
+    user_input != "exit" && user_input != "more" 
+    puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
+  end 
+end 
+     
+ def goodbye
+   puts "Thanks for using the National Park CLI!"
+ end 
  
   
 end
