@@ -14,8 +14,10 @@ class CLI
     ask_to_select_state
     user_input = gets.strip
     @@selected_state = State.find_by_abbrev(user_input)
+    # binding.pry
     @@selected_state.scraped? ? show_parks : Scraper.scrape_individual_page(@@selected_state.url)
     show_parks
+    puts
     ask_to_select_bio
     bio_input = gets.strip.to_i
     Park.find_bio_by_index(bio_input)
@@ -40,9 +42,9 @@ class CLI
  end 
  
  def show_parks
-   Park.all.each.with_index(1) do |park, index|
+   Park.all.each_with_index do |park, index|
     # binding.pry
-     puts "#{index}.#{park.name} - #{park.type}"
+     puts "#{index + 1}.#{park.name} - #{park.type}"
   end 
  end 
  
@@ -53,27 +55,26 @@ class CLI
  
  def continue_or_exit
    puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
-  user_input = ""
-   while user_input != 'exit' 
+    user_input = ""
     user_input = gets.strip
-    show_parks
-    ask_to_select_bio
-    bio_input = gets.strip.to_i
-    Park.find_bio_by_index(bio_input)
-    puts
-    puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
-   end 
-   if user_input == "exit"
-     goodbye
-   elsif 
-    user_input != "exit" && user_input != "more" 
-    puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
-  end 
+   
+   while user_input != 'exit' 
+      show_parks
+      ask_to_select_bio
+      bio_input = gets.strip.to_i
+      Park.find_bio_by_index(bio_input)
+      puts
+      puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
+      user_input = gets.strip
+    end 
+      puts
+      goodbye
+  # elsif 
+  #   user_input != "exit" && user_input != "more" 
+  #     puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
 end 
      
  def goodbye
    puts "Thanks for using the National Park CLI!"
  end 
- 
-  
 end

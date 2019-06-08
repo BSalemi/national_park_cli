@@ -24,7 +24,7 @@ class Scraper
   def self.scrape_individual_page(url)
     doc = open(url)
     parsed_doc = Nokogiri::HTML(doc)
-    grabbed_elements = parsed_doc.css("li.clearfix")
+    grabbed_elements = parsed_doc.css("li.clearfix:not(.numbers_download)")
     grabbed_elements.each_with_index do |element, index|
       
       type = grabbed_elements.css("div.col-md-9").css("h2")[index].nil? ? nil : grabbed_elements.css("div.col-md-9").css("h2")[index].text
