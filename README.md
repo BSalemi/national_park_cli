@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the National Park CLI by entering 'ruby bin/console' in the terminal. Following the prompts output to the terminal, enter a state abbreviation to get a list of national parks in that state. Select a numbered park from the generated list to read a bio on the national park of your choosing. Continue to read about additional parks in the selected state by typing 'more' in the terminal. To quit the CLI, type 'exit' in the terminal. 
 
 ## Development
 
