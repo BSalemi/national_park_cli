@@ -1,8 +1,6 @@
 # NationalParkCLI
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/national_park_cli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to the National Park CLI gem! This gem allows users to see a list of every national park in the United States by state. Each search will yield the name and city of each national park in the chosen state. Users will also be able to dive deeper and request a bio of each specific park. 
 
 ## Installation
 
