@@ -18,7 +18,6 @@ class Scraper
       abbreviation = state_url.slice(7..8)
       State.new(name, url, abbreviation)
     end 
-    #binding.pry
   end   
   
   def self.scrape_individual_page(url)
@@ -32,7 +31,6 @@ class Scraper
       location = grabbed_elements.css("div.col-md-9").css("h4")[index].nil? ? nil : grabbed_elements.css("div.col-md-9").css("h4")[index].text
       bio = grabbed_elements.css("div.col-md-9").css("p")[index].nil? ? nil : grabbed_elements.css("div.col-md-9").css("p")[index].text
       new_park = Park.new(type, name, location, bio, CLI.selected_state)
-      # binding.pry
     end 
   end 
 end 

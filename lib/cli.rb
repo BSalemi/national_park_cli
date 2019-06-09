@@ -12,19 +12,8 @@ class CLI
     sleep 1
     show_states
     ask_to_select_state
-    user_input = gets.strip
-    @@selected_state = State.find_by_abbrev(user_input)
-    # binding.pry
-    @@selected_state.scraped? ? show_parks : Scraper.scrape_individual_page(@@selected_state.url)
-    show_parks
     puts
     ask_to_select_bio
-    bio_input = gets.strip.to_i
-    Park.find_bio_by_index(bio_input)
-    puts
-    continue_or_exit
-    # binding.pry
-    
   end
   
   def welcome 
@@ -39,18 +28,41 @@ class CLI
  
  def ask_to_select_state
    puts "Please enter the abbreviation for a list of National Parks in that state."
+    user_input = " "
+    user_input = gets.strip
+    
+    while State.find_by_abbrev(user_input) == nil 
+         puts "Please enter the abbreviation for a list of National Parks in that state."
+         user_input = gets.strip
+    end 
+  State.find_by_abbrev(user_input)
+  @@selected_state = State.find_by_abbrev(user_input)
+  @@selected_state.scraped? ? show_parks : Scraper.scrape_individual_page(@@selected_state.url)
+  show_parks
  end 
  
  def show_parks
    Park.all.each_with_index do |park, index|
-    # binding.pry
      puts "#{index + 1}.#{park.name} - #{park.type}"
   end 
  end 
  
  def ask_to_select_bio
-   puts "Please enter the number of the National Park you would like to learn more about or type 'exit'"
+   puts "Please enter the number of the National Park you would like to learn more about or type 'exit'."
+   bio_input = " "
+   bio_input = gets.strip.to_i
    
+   while bio_input < 1 || bio_input > Park.all.length 
+      if bio_input == 'exit'.to_i 
+        return goodbye 
+      else 
+        puts "Please enter a valid National Park number."
+        bio_input = gets.strip.to_i
+      end 
+   end 
+   Park.find_bio_by_index(bio_input)
+   puts
+   continue_or_exit
  end 
  
  def continue_or_exit
@@ -61,20 +73,16 @@ class CLI
    while user_input != 'exit' 
       show_parks
       ask_to_select_bio
-      bio_input = gets.strip.to_i
-      Park.find_bio_by_index(bio_input)
       puts
       puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
       user_input = gets.strip
     end 
       puts
       goodbye
-  # elsif 
-  #   user_input != "exit" && user_input != "more" 
-  #     puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
 end 
      
  def goodbye
    puts "Thanks for using the National Park CLI!"
+   exit
  end 
 end
