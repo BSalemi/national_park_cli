@@ -48,22 +48,20 @@ class CLI
  end 
  
  def ask_to_select_bio
-   puts "Please enter the number of the National Park you would like to learn more about or type 'exit'."
-   bio_input = " "
-   bio_input = gets.strip.to_i
-   
-   while bio_input < 1 || bio_input > Park.all.length 
-      if bio_input == 'exit'.to_i 
-        return goodbye 
-      else 
-        puts "Please enter a valid National Park number."
-        bio_input = gets.strip.to_i
-      end 
-   end 
-   Park.find_bio_by_index(bio_input)
-   puts
-   continue_or_exit
- end 
+  puts "Please enter the number of the National Park you would like to learn more about or type 'exit'."
+  bio_input = gets.strip
+  while !("1"..Park.all.length.to_s).include?(bio_input)
+     if bio_input == 'exit'
+       return goodbye
+     else
+       puts "Please enter a valid National Park number."
+       bio_input = gets.strip
+     end
+  end
+  Park.find_bio_by_index(bio_input)
+  puts
+  continue_or_exit
+end 
  
  def continue_or_exit
    puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
