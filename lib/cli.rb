@@ -43,7 +43,7 @@ class CLI
  
  def show_parks
    Park.all.each_with_index do |park, index|
-     puts "#{index + 1}.#{park.name} - #{park.type}"
+     puts "#{index + 1}.#{park.name}, #{park.location} - #{park.type} "
   end 
  end 
  
@@ -58,7 +58,7 @@ class CLI
        bio_input = gets.strip
      end
   end
-  Park.find_bio_by_index(bio_input)
+  Park.find_bio_by_index(bio_input.to_i)
   puts
   continue_or_exit
 end 
