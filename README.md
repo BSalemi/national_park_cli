@@ -4,6 +4,8 @@ Welcome to the National Park CLI gem! This gem allows users to see a list of eve
 
 [Blog Post](https://bsalemi.github.io/project_number_one_national_park_cli)
 
+[![National Park CLI Screen Grab](https://i.imgur.com/Ttuf6jv.png)](https://vimeo.com/341252333)
+
 ## Installation
 
 Add this line to your application's Gemfile:
