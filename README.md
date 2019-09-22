@@ -2,7 +2,7 @@
 
 Welcome to the National Park CLI gem! This gem allows users to see a list of every national park in the United States by state. Each search will yield the name and city of each national park in the chosen state. Users will also be able to dive deeper and request a bio of each specific park. 
 
-Blog post: https://bsalemi.github.io/project_number_one_national_park_cli
+[Blog Post](https://bsalemi.github.io/project_number_one_national_park_cli)
 
 ## Installation
 
