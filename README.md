@@ -8,19 +8,11 @@ Welcome to the National Park CLI gem! This gem allows users to see a list of eve
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'national_park_cli'
-```
+Fork and clone this repository and cd into the directory.
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install national_park_cli
+    $ bundle install
 
 ## Usage
 
