@@ -1,3 +1,5 @@
+require 'colorize'
+
 class CLI 
   
   @@selected_state = nil 
@@ -17,22 +19,22 @@ class CLI
   end
   
   def welcome 
-    puts "Welcome to National Park CLI!"
+    puts "Welcome to National Park CLI!".colorize(:green)
   end
   
   def show_states 
     State.all.each do |state|
-     puts "#{state.abbreviation.upcase} - #{state.name}"
+     puts "#{state.abbreviation.upcase.colorize(:green)} - #{state.name}"
    end 
  end 
  
  def ask_to_select_state
-   puts "Please enter the abbreviation for a list of National Parks in that state."
+   puts "Please enter the abbreviation for a list of National Parks in that state.".colorize(:green)
     user_input = " "
     user_input = gets.strip
     
     while State.find_by_abbrev(user_input) == nil 
-         puts "Please enter the abbreviation for a list of National Parks in that state."
+         puts "Please enter the abbreviation for a list of National Parks in that state.".colorize(:green)
          user_input = gets.strip
     end 
   State.find_by_abbrev(user_input)
@@ -43,18 +45,18 @@ class CLI
  
  def show_parks
    Park.all.each_with_index do |park, index|
-     puts "#{index + 1}.#{park.name}, #{park.location} - #{park.type} "
+     puts "#{index + 1}.".colorize(:red) + "#{park.name},".colorize(:green) + "#{park.location}".colorize(:green) + "- #{park.type}"
   end 
  end 
  
  def ask_to_select_bio
-  puts "Please enter the number of the National Park you would like to learn more about or type 'exit'."
+  puts "Please enter the number of the National Park you would like to learn more about or type 'exit'.".colorize(:green)
   bio_input = gets.strip
   while !("1"..Park.all.length.to_s).include?(bio_input)
      if bio_input == 'exit'
        return goodbye
      else
-       puts "Please enter a valid National Park number."
+       puts "Please enter a valid National Park number.".colorize(:green)
        bio_input = gets.strip
      end
   end
@@ -64,7 +66,7 @@ class CLI
 end 
  
  def continue_or_exit
-   puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
+   puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit.".colorize(:green)
     user_input = ""
     user_input = gets.strip
    
@@ -72,7 +74,7 @@ end
       show_parks
       ask_to_select_bio
       puts
-      puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit."
+      puts "Please enter 'more' if you'd like to see another park bio or 'exit' to exit.".colorize(:green)
       user_input = gets.strip
     end 
       puts
@@ -80,7 +82,7 @@ end
 end 
      
  def goodbye
-   puts "Thanks for using the National Park CLI!"
+   puts "Thanks for using the National Park CLI!".colorize(:green)
    exit
  end 
 end
